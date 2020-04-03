@@ -8,13 +8,7 @@
     <div class="row">
       <div class="col-md-2">Filter by:</div>
       <div class="col-md-4">
-        <input type="text" #filterElement
-          [(ngModel)]="listFilter" />
-      </div>
-      <div class="col-md-2">Filter name:</div>
-      <div class="col-md-4">
-        <input type="text" #nameElement
-          [(ngModel)]="filterName" />
+        <input type="text" #filterElement [(ngModel)]="listFilter" />
       </div>
     </div>
     <div class="row" [hidden]="!listFilter">
