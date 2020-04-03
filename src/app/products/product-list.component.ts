@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
@@ -7,7 +7,8 @@ import { ProductService } from './product.service';
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
+  @ViewChild('filterElement')filterElementRef;
     pageTitle: string = 'Product List';
     // listFilter: string;
     private _listFilter: string;
@@ -39,6 +40,12 @@ export class ProductListComponent implements OnInit {
             },
             (error: any) => this.errorMessage = <any>error
         );
+    }
+
+    ngAfterViewInit(): void {
+      if (this.filterElementRef.nativeElement) {
+        this.filterElementRef.nativeElement.focus();
+      }
     }
 
     toggleImage(): void {
