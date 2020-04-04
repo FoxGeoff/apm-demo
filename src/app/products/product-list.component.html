@@ -4,13 +4,10 @@
   </div>
 
   <div class="panel-body">
-    <!-- Filter by the Title   -->
-    <pm-filter></pm-filter>
-    
-    <div class="row" [hidden]="!listFilter">
-      <div class="col-md-10">
-        <h3>Filtered by: {{ listFilter }}</h3>
-      </div>
+
+    <div class="row">
+      <!-- Filter by the Title   -->
+      <pm-filter class="col-md-10" [displayDetail]="includeDetail"></pm-filter>
     </div>
 
     <div class="table-responsive">

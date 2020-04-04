@@ -11,8 +11,8 @@ import { NgModel } from '@angular/forms';
 export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
   filterName: string;
-
   showImage: boolean;
+  includeDetail = true;
 
   imageWidth: number = 50;
   imageMargin: number = 2;

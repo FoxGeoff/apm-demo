@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 
 @Component({
   selector: 'pm-filter',
@@ -7,16 +7,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit, AfterViewInit {
   @ViewChild('filterElement') filterElementRef: { nativeElement: { focus: () => void; }; };
-
-  private _listFilter: string;
-  public get listFilter(): string {
-    return this._listFilter;
-  }
-
-  public set listFilter(value: string) {
-    this._listFilter = value;
-    // this.performFilter(this.listFilter);
-  }
+  @Input() displayDetail: boolean;
+  listFilter: string;
 
   constructor() { }
 
@@ -28,5 +20,4 @@ export class FilterComponent implements OnInit, AfterViewInit {
       this.filterElementRef.nativeElement.focus();
     }
   }
-
 }
