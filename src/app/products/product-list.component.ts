@@ -8,20 +8,9 @@ import { NgModel } from '@angular/forms';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
-  @ViewChild('filterElement') filterElementRef: { nativeElement: { focus: () => void; }; };
+export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
   filterName: string;
-  // listFilter: string;
-  private _listFilter: string;
-  public get listFilter(): string {
-    return this._listFilter;
-  }
-
-  public set listFilter(value: string) {
-    this._listFilter = value;
-    this.performFilter(this.listFilter);
-  }
 
   showImage: boolean;
 
@@ -38,16 +27,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.productService.getProducts().subscribe(
       (products: IProduct[]) => {
         this.products = products;
-        this.performFilter(this.listFilter);
+        this.performFilter(); // Todo: this.listFilter
       },
       (error: any) => this.errorMessage = <any>error
     );
-  }
-
-  ngAfterViewInit(): void {
-    if (this.filterElementRef.nativeElement) {
-      this.filterElementRef.nativeElement.focus();
-    }
   }
 
   toggleImage(): void {
