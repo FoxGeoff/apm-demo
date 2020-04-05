@@ -8,6 +8,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/cor
 export class FilterComponent implements OnInit, AfterViewInit {
   @ViewChild('filterElement') filterElementRef: { nativeElement: { focus: () => void; }; };
   @Input() displayDetail: boolean;
+  @Input() productCount: number;
   listFilter: string;
 
   constructor() { }
