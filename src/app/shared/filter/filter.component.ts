@@ -10,11 +10,16 @@ export class FilterComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() displayDetail: boolean;
   @Input() productCount: number;
   listFilter: string;
+  hitMessage: string;
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    if (changes['productCount'] && !changes['productCount'].currentValue) {
+      this.hitMessage = 'No matches found';
+    } else {
+      this.hitMessage = 'Hits: ' + this.productCount;
+    }
   }
 
   ngOnInit() {
