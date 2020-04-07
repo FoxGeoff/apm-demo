@@ -56,9 +56,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     if (filterBy) {
       this.filteredProducts = this.products.filter((product: IProduct) =>
         product.productName.toLocaleLowerCase().indexOf(filterBy.toLocaleLowerCase()) !== -1);
+        this.filteredProductsCount = this.filteredProducts.length;
     } else {
       this.filteredProducts = this.products;
       this.filteredProductsCount = this.products.length;
     }
+
   }
 }

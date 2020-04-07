@@ -9,9 +9,7 @@ export class FilterComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('filterElement') filterElementRef: { nativeElement: { focus: () => void; }; };
   @Input() displayDetail: boolean;
   @Input() productCount: number;
-  // listFilter: string = 'cart';
   hitMessage: string;
-
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   private _listFilter: string;
