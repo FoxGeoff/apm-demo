@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'pm-filter',
@@ -9,8 +9,20 @@ export class FilterComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('filterElement') filterElementRef: { nativeElement: { focus: () => void; }; };
   @Input() displayDetail: boolean;
   @Input() productCount: number;
-  listFilter: string = 'cart';
+  // listFilter: string = 'cart';
   hitMessage: string;
+
+  @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+
+  private _listFilter: string;
+  public get listFilter(): string {
+    return  this._listFilter;
+  }
+  public set listFilter(value: string) {
+    this._listFilter = value;
+    this.valueChange.emit(value);
+  }
+
 
   constructor() { }
 

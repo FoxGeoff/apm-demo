@@ -10,9 +10,10 @@
         class="col-md-10"
         [displayDetail]="includeDetail"
         [productCount]="filteredProductsCount"
+        (valueChange) = "onValueChange($event)"
       ></pm-filter>
     </div>
-    {{filterBy.listFilter}}
+    {{parentListFilter}}
     <div class="table-responsive">
       <table class="table" *ngIf="products?.length">
         <thead>

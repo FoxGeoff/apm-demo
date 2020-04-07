@@ -10,7 +10,7 @@ import { FilterComponent } from '../shared/filter/filter.component';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
- @ViewChild(FilterComponent) filterComponent: FilterComponent;
+  @ViewChild(FilterComponent) filterComponent: FilterComponent;
   parentListFilter: string;
 
   pageTitle: string = 'Product List';
@@ -28,8 +28,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   constructor(private productService: ProductService) { }
 
+  onValueChange(value: string): void {
+    this.performFilter(value);
+    this.parentListFilter = value;
+    console.log('Filter:' + value);
+  }
+
   ngAfterViewInit(): void {
-    this.parentListFilter = this.filterComponent.listFilter;
+    // this.parentListFilter = this.filterComponent.listFilter;
   }
 
   ngOnInit(): void {
@@ -52,7 +58,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
         product.productName.toLocaleLowerCase().indexOf(filterBy.toLocaleLowerCase()) !== -1);
     } else {
       this.filteredProducts = this.products;
-      this.filteredProductsCount =  this.products.length;
+      this.filteredProductsCount = this.products.length;
     }
   }
 }
