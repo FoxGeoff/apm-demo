@@ -6,13 +6,13 @@
   <div class="panel-body">
     <div class="row">
       <!-- Filter by the Title   -->
-      <pm-filter
+      <pm-filter #filterBy
         class="col-md-10"
         [displayDetail]="includeDetail"
         [productCount]="filteredProductsCount"
       ></pm-filter>
     </div>
-
+    {{filterBy.listFilter}}
     <div class="table-responsive">
       <table class="table" *ngIf="products?.length">
         <thead>

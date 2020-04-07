@@ -1,14 +1,18 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
 import { NgModel } from '@angular/forms';
+import { FilterComponent } from '../shared/filter/filter.component';
 
 @Component({
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, AfterViewInit {
+ @ViewChild(FilterComponent) filterComponent: FilterComponent;
+  parentListFilter: string;
+
   pageTitle: string = 'Product List';
   filterName: string;
   showImage: boolean;
@@ -24,11 +28,15 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
+  ngAfterViewInit(): void {
+    this.parentListFilter = this.filterComponent.listFilter;
+  }
+
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
       (products: IProduct[]) => {
         this.products = products;
-        this.performFilter(); // Todo: this.listFilter
+        this.performFilter(this.parentListFilter);
       },
       (error: any) => this.errorMessage = <any>error
     );
